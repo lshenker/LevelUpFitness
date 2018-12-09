@@ -80,4 +80,5 @@ public class AddExerciseDialogFragment extends DialogFragment {
             throw new ClassCastException("Must implement DialogListener");
         }
     }
-}
+    
+} // end of class AddExerciseDialogFragment
