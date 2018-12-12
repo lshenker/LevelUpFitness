@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
 
@@ -43,6 +44,23 @@ public class HomeFragment extends Fragment {
             saveWorkout(model);
         }
 
+        workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // pass the Workout object to ResumeWorkoutFragment
+                Workout model = workoutList.get(position);
+                model.setDate();
+                Fragment destFragment = new ResumeWorkoutFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("Workout", model);
+                destFragment.setArguments(bundle);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), destFragment);
+                ft.commit();
+            }
+        });
+
         // "+" button on HomeFragment
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_home);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +84,7 @@ public class HomeFragment extends Fragment {
     }
 
     void loadSavedWorkouts() {
-        /* TESTING DATA
+        //TESTING DATA
         ArrayList<Exercise> exList = new ArrayList<Exercise>();
         exList.add(new Exercise("Squat", 5, 5, 225));
         exList.add(new Exercise("Bench Press", 4, 8, 165));
@@ -79,7 +97,7 @@ public class HomeFragment extends Fragment {
         exList.add(new Exercise("Overhead Press", 4, 8, 135));
         exList.add(new Exercise("Deadlift", 3, 10, 245));
         Workout workoutB = new Workout("Workout B", exList);
-        workoutList.add(workoutB); */
+        workoutList.add(workoutB);
 
         // TODO: Load workout ArrayList from SQL/txt file
     }

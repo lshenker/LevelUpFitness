@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new HomeFragment());
             ft.commit();
+        } else if (id == R.id.nav_resume_workout) {
+            // Needs to pass a saved workout in progress to work or saved instance
+            //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            //ft.replace(R.id.flMain, new ResumeWorkoutFragment());
+            //ft.commit();
         } else if (id == R.id.nav_create_workout) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new CreateWorkoutFragment());
