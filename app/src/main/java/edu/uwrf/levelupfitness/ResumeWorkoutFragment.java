@@ -99,17 +99,19 @@ public class ResumeWorkoutFragment extends Fragment {
     void loadExercises() {
         exerciseList = model.getExerciseList();
         current = exerciseList.get(0);
+
     }
 
     void updateWorkout() {
-        exerciseList.remove(0);
-        if (exerciseList.size() > 0)
+        if (exerciseList.size() > 0) {
             current = exerciseList.get(0);
             currName.setText(current.getName());
             currWeight.setText(String.valueOf(current.getWeight()));
             currSets.setText(String.valueOf(current.getSets()));
             currReps.setText(String.valueOf(current.getReps()));
-        fillListView();
+            exerciseList.remove(0);
+            fillListView();
+        }
     }
 
     void saveWorkout(Workout model) {
