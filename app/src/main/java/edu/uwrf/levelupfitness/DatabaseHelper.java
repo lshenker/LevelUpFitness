@@ -20,11 +20,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLOUMN_HEIGHT = "height"; // in inches
     public static final String COLOUMN_WEIGHT = "weight"; // in pounds
     public static final String COLOUMN_PHONE = "phone";
+    public static final String COLOUMN_WORKOUT1 = "WO1";
+    public static final String COLOUMN_WORKOUT2 = "WO2";
+    public static final String COLOUMN_WORKOUT3 = "WO3";
 
     SQLiteDatabase db;
 
     private static final String TABLE_CREATE = "create table contacts (ID INTEGER PRIMARY KEY,FirstName TEXT,"
-            +"LastName TEXT, pass TEXT,phone TEXT,username TEXT, weight TEXT, height TEXT)";
+            +"LastName TEXT, pass TEXT,phone TEXT,username TEXT, weight TEXT, height TEXT,WO1 TEXT,WO2 TEXt,WO3 TEXT)";
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME,null,DATABASE_VERSION);

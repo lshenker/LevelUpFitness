@@ -86,7 +86,8 @@ public class HomeFragment extends Fragment {
 
     void saveWorkout(Workout model) {
 
-        // TODO: Save workout object to workout ArrayList SQL/txt file
+    //    String stringToBeInserted = jsonObject.toString();
+      //      if(and insert this string into DB)
     }
 
     void fillListView() {
