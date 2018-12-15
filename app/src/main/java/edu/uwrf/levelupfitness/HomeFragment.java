@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import edu.uwrf.workoutapp.R;
@@ -104,12 +106,22 @@ public class HomeFragment extends Fragment {
 
     void saveWorkout(Workout model) {
 
-    //    String stringToBeInserted = jsonObject.toString();
-      //      if(and insert this string into DB)
+    //    gson.toJson(model, new FileWriter("D:\\file.json"));
+
+
+     //   String stringToBeInserted = model.toString();
+     //   Gson gson = new Gson();
+      //  gson.toJson(model, new FileWriter("D:\\file.json"));
+     //   String jsonInString = gson.toJson(model);
     }
 
     void fillListView() {
         WorkoutAdapter workoutAdapter = new WorkoutAdapter(getActivity().getApplicationContext(), workoutList);
         workoutListView.setAdapter(workoutAdapter);
+    }
+
+    public static String username;
+    public static void sendSetUsername(String a){
+        username = a;
     }
 }

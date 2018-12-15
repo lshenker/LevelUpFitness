@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
     String username = "";
     public void sendUsername(String a){
         username = this.getIntent().getStringExtra("Username");
+        HomeFragment.sendSetUsername(a);
     }
 
 

@@ -22,13 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //     setSupportActionBar(toolbar);
-
-        //      @Override
-        //      public boolean onCreateOptionMenu(Menu menu){
-
-        //     }
 
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
