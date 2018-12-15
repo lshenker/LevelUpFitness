@@ -1,5 +1,8 @@
 package edu.uwrf.levelupfitness;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
@@ -11,8 +14,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.json.JSONObject;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import org.*;
 
 import edu.uwrf.workoutapp.R;
 
@@ -22,6 +35,12 @@ public class HomeFragment extends Fragment {
     Workout model;
     ListView workoutListView;
     ArrayList<Workout> workoutList = new ArrayList<>();
+    //String username;
+    public static String username;
+    public static void sendSetUsername(String a){
+        username = a;
+    }
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -102,18 +121,31 @@ public class HomeFragment extends Fragment {
         workoutList.add(workoutB);
 
         // TODO: Load workout ArrayList from SQL/txt file
+       // String json = Read_column_value_logic_here
+       // JSONObject jsonObject = new JSONObject(json);
     }
 
     void saveWorkout(Workout model) {
 
-    //    gson.toJson(model, new FileWriter("D:\\file.json"));
+        ObjectMapper mapper = new ObjectMapper();
 
 
-     //   String stringToBeInserted = model.toString();
-     //   Gson gson = new Gson();
-      //  gson.toJson(model, new FileWriter("D:\\file.json"));
-     //   String jsonInString = gson.toJson(model);
-        System.out.println("test line");
+        try {
+            String jsonString = mapper.writeValueAsString(model);
+           // DatabaseHelper.addWorkout(username, jsonString);
+        }
+        catch(JsonGenerationException e){
+            e.printStackTrace();
+        }
+        catch(JsonMappingException e){
+            e.printStackTrace();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+
     }
 
     void fillListView() {
@@ -121,8 +153,5 @@ public class HomeFragment extends Fragment {
         workoutListView.setAdapter(workoutAdapter);
     }
 
-    public static String username;
-    public static void sendSetUsername(String a){
-        username = a;
-    }
+
 }

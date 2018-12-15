@@ -85,6 +85,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
+    public void addWorkout(String jsonString, String username){
+
+
+
+
+
+
+
+
+        db = this.getReadableDatabase();
+        String query = "select username from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a,b;
+        b = "not found";
+        if(cursor.moveToFirst()){
+            do{
+                a = cursor.getString(0);
+
+                if(a.equals(username)){
+                    if( cursor.getString(7) == null) {
+                        b = cursor.getString(7);
+                        break;
+                    }
+                    else if(cursor.getString(8) == null) {
+                      //  jsonString.
+                        break;
+                    }
+                    else{
+                        b = cursor.getString(7);
+                        break;
+                    }
+                }
+
+
+            }while(cursor.moveToNext());
+        }
+
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME; // drop older table if it exist
