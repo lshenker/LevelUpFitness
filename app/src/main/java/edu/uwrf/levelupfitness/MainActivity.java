@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         // set up navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -110,13 +107,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     String username = "";
     public void sendUsername(String a){
         username = this.getIntent().getStringExtra("Username");
         HomeFragment.sendSetUsername(a);
     }
-
-
 }
-

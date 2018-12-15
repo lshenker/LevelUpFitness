@@ -30,15 +30,13 @@ public class Register extends AppCompatActivity {
     EditText _weightText;
     EditText _heightText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Register");
 
         openHelper=new DatabaseHelper(this);
         Button _registerButton = (Button)findViewById(R.id.regButton);
@@ -49,7 +47,6 @@ public class Register extends AppCompatActivity {
         _emailText=(EditText)findViewById(R.id.emailText);
         _weightText=(EditText)findViewById(R.id.weightText);
         _heightText=(EditText)findViewById(R.id.heightText);
-
 
         _registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,8 +71,7 @@ public class Register extends AppCompatActivity {
                 c.setPhone(phone1);
                 helper.insertContact(c);
 
-                Toast.makeText(getApplicationContext(), "register successfully",Toast.LENGTH_LONG).show();
-
+                Toast.makeText(getApplicationContext(), "Registered",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -101,6 +97,4 @@ public class Register extends AppCompatActivity {
         contentValues.put(DatabaseHelper.COLOUMN_HEIGHT, height);
         long id = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
     }
-
-
 }

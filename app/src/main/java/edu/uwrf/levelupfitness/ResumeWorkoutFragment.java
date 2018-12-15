@@ -23,11 +23,14 @@ public class ResumeWorkoutFragment extends Fragment {
     Workout model;
     ListView exerciseListView;
     ArrayList<Exercise> exerciseList = new ArrayList<>();
+    int currentSet;
     Exercise current;
     EditText currName;
     EditText currSets;
     EditText currReps;
     EditText currWeight;
+    TextView setNum;
+    EditText currReps2;
 
     public ResumeWorkoutFragment() {
         // Required empty public constructor
@@ -47,6 +50,8 @@ public class ResumeWorkoutFragment extends Fragment {
         currSets = (EditText) view.findViewById(R.id.rw_sets);
         currReps = (EditText) view.findViewById(R.id.rw_reps);
         currWeight = (EditText) view.findViewById(R.id.rw_weight);
+        setNum = (TextView) view.findViewById(R.id.rw_setNum);
+        currReps2 = (EditText) view.findViewById(R.id.rw_reps2);
 
         // load Workout object from HomeFragment if applicable
         Bundle bundle = this.getArguments();
@@ -62,13 +67,27 @@ public class ResumeWorkoutFragment extends Fragment {
 
                 if (exerciseList.size() >= 1) {
                     // not the last exercise in workout
-                    updateWorkout();
+                    if (currentSet == current.getSets()) {
+                        // last set
+                        currentSet = 0;
+                        updateCurrent();
+
+                    }
+                    updateSet();
 
                 } else {
-                    // finish workout
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.flMain, new HomeFragment());
-                    ft.commit();
+                    if (currentSet == current.getSets()) {
+                        // last set
+                        currentSet = 0;
+                        // finish workout
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.flMain, new HomeFragment());
+                        ft.commit();
+
+                    } else {
+                        // not last set
+                        updateSet();
+                    }
                 }
             }
         });
@@ -90,7 +109,8 @@ public class ResumeWorkoutFragment extends Fragment {
 
         // Load exercises and populate listview
         loadExercises();
-        updateWorkout();
+        updateCurrent();
+        updateSet();
 
         // Inflate the layout for this fragment
         return view;
@@ -102,7 +122,7 @@ public class ResumeWorkoutFragment extends Fragment {
 
     }
 
-    void updateWorkout() {
+    void updateCurrent() {
         if (exerciseList.size() > 0) {
             current = exerciseList.get(0);
             currName.setText(current.getName());
@@ -111,7 +131,13 @@ public class ResumeWorkoutFragment extends Fragment {
             currReps.setText(String.valueOf(current.getReps()));
             exerciseList.remove(0);
             fillListView();
+            currReps2.setText(String.valueOf(current.getReps()));
         }
+    }
+
+    void updateSet() {
+        currentSet++;
+        setNum.setText("Set " + currentSet + "");
     }
 
     void saveWorkout(Workout model) {

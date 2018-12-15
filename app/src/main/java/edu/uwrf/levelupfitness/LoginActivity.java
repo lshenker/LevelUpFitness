@@ -17,12 +17,13 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Log In");
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                   // MainActivity.sendUsername(str);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("Username", str);
-                    Toast.makeText(getApplicationContext(), "Login Success",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Success",Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
                 else{
@@ -57,8 +58,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-
 }
