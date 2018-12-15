@@ -3,7 +3,7 @@ package edu.uwrf.levelupfitness;
 public class Contact {
 
     public String id, userName, pass, firstName, lastName, height,
-            weight, phone;
+            weight, phone, WO1, WO2, WO3;
 
     // setters
     public void setId(String id){
@@ -29,6 +29,15 @@ public class Contact {
     }
     public void setPhone(String phone){
         this.phone = phone;
+    }
+    public void setWO1(String WO1){
+        this.WO1 = WO1;
+    }
+    public void setWO2(String WO2){
+        this.WO2 = WO2;
+    }
+    public void setWO3(String WO3){
+        this.WO3 = WO3;
     }
 
 
@@ -57,5 +66,15 @@ public class Contact {
     public String getPhone(){
         return this.phone;
     }
+    public String getWo1(){
+        return this.WO1;
+    }
+    public String getWO2(){
+        return this.WO2;
+    }
+    public String getWO3(){
+        return this.WO3;
+    }
+
 
 }
