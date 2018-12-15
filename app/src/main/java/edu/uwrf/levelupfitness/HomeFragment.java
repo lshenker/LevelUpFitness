@@ -113,6 +113,7 @@ public class HomeFragment extends Fragment {
      //   Gson gson = new Gson();
       //  gson.toJson(model, new FileWriter("D:\\file.json"));
      //   String jsonInString = gson.toJson(model);
+        System.out.println("test line");
     }
 
     void fillListView() {
