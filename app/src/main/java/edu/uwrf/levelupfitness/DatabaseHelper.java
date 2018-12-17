@@ -20,11 +20,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLOUMN_HEIGHT = "height"; // in inches
     public static final String COLOUMN_WEIGHT = "weight"; // in pounds
     public static final String COLOUMN_PHONE = "phone";
+    public static final String COLOUMN_WORKOUT1 = "WO1";
+    public static final String COLOUMN_WORKOUT2 = "WO2";
+    public static final String COLOUMN_WORKOUT3 = "WO3";
 
     SQLiteDatabase db;
 
     private static final String TABLE_CREATE = "create table contacts (ID INTEGER PRIMARY KEY,FirstName TEXT,"
-            +"LastName TEXT, pass TEXT,phone TEXT,username TEXT, weight TEXT, height TEXT)";
+            +"LastName TEXT, pass TEXT,phone TEXT,username TEXT, weight TEXT, height TEXT,WO1 TEXT,WO2 TEXt,WO3 TEXT)";
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME,null,DATABASE_VERSION);
@@ -80,6 +83,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return b;
+    }
+
+    public void addWorkout(String jsonString, String username){
+
+
+
+
+
+
+
+
+        db = this.getReadableDatabase();
+        String query = "select username from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a,b;
+        b = "not found";
+        if(cursor.moveToFirst()){
+            do{
+                a = cursor.getString(0);
+
+                if(a.equals(username)){
+                    if( cursor.getString(7) == null) {
+                        b = cursor.getString(7);
+                        break;
+                    }
+                    else if(cursor.getString(8) == null) {
+                      //  jsonString.
+                        break;
+                    }
+                    else{
+                        b = cursor.getString(7);
+                        break;
+                    }
+                }
+
+
+            }while(cursor.moveToNext());
+        }
+
     }
 
     @Override

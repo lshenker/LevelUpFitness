@@ -1,5 +1,8 @@
 package edu.uwrf.levelupfitness;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
@@ -8,8 +11,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.json.JSONObject;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import org.*;
 
 import edu.uwrf.workoutapp.R;
 
@@ -19,6 +35,14 @@ public class HomeFragment extends Fragment {
     Workout model;
     ListView workoutListView;
     ArrayList<Workout> workoutList = new ArrayList<>();
+    //String username;
+    public static String username;
+    public static void sendSetUsername(String a){
+        username = a;
+    }
+//    Workout WO1 = null;
+//    Workout WO2 = null;
+//    Workout WO3 = null;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -43,6 +67,43 @@ public class HomeFragment extends Fragment {
             saveWorkout(model);
         }
 
+
+      //      if (WO1 == null) {
+    //            WO1 = model;
+//
+  //          }
+     //       else if (WO2 == null && WO1 != null) {
+
+           //     WO2 = model;
+
+       //     }
+         //  else if (WO3 == null && WO2 != null && WO1 != null) {
+     //           WO3 = model;
+
+   //         }
+
+//            else if (WO3 != null && WO2 != null && WO1 != null) {
+//                WO3 = model;
+// }
+
+
+        workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // pass the Workout object to ResumeWorkoutFragment
+                Workout model = workoutList.get(position);
+                model.setDate();
+                Fragment destFragment = new ResumeWorkoutFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("Workout", model);
+                destFragment.setArguments(bundle);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), destFragment);
+                ft.commit();
+            }
+        });
+
         // "+" button on HomeFragment
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_home);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +127,7 @@ public class HomeFragment extends Fragment {
     }
 
     void loadSavedWorkouts() {
-        /* TESTING DATA
+        //TESTING DATA
         ArrayList<Exercise> exList = new ArrayList<Exercise>();
         exList.add(new Exercise("Squat", 5, 5, 225));
         exList.add(new Exercise("Bench Press", 4, 8, 165));
@@ -79,18 +140,75 @@ public class HomeFragment extends Fragment {
         exList.add(new Exercise("Overhead Press", 4, 8, 135));
         exList.add(new Exercise("Deadlift", 3, 10, 245));
         Workout workoutB = new Workout("Workout B", exList);
-        workoutList.add(workoutB); */
+        workoutList.add(workoutB);
+
+
 
         // TODO: Load workout ArrayList from SQL/txt file
+        // String json = Read_column_value_logic_here
+        // JSONObject jsonObject = new JSONObject(json);
+
+        //if(WO1 != null){
+            //workoutList.add(WO1);
+        //}
+        //if(WO2 != null){
+
+            //workoutList.add(WO2);
+        //}
+        //if(WO3 != null){
+            //workoutList.add(WO3);
+        //}
+
+
     }
 
     void saveWorkout(Workout model) {
 
-        // TODO: Save workout object to workout ArrayList SQL/txt file
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        try {
+            String jsonString = mapper.writeValueAsString(model);
+           // DatabaseHelper.addWorkout(username, jsonString);
+        }
+        catch(JsonGenerationException e){
+            e.printStackTrace();
+        }
+        catch(JsonMappingException e){
+            e.printStackTrace();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+      
+
+        //if(WO1 == null){
+            //WO1 = model;
+         //   workoutList.add(WO1);
+        //}
+        //if(WO2 == null && WO1 != null){
+
+            //WO2 = model;
+        //    workoutList.add(WO2);
+        //}
+        //if(WO3 == null && WO2 != null && WO1 != null){
+            //WO3 = model;
+          //  workoutList.add(WO3);
+           //     }
+
+       //if(WO3 != null && WO2 != null && WO1 != null){
+           //WO3 = model;
+          //  workoutList.add(WO3);
+        //}
+
+
+
     }
 
     void fillListView() {
         WorkoutAdapter workoutAdapter = new WorkoutAdapter(getActivity().getApplicationContext(), workoutList);
         workoutListView.setAdapter(workoutAdapter);
     }
+
+
 }

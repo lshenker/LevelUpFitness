@@ -16,6 +16,7 @@ import edu.uwrf.workoutapp.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,11 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new HomeFragment());
             ft.commit();
+        } else if (id == R.id.nav_resume_workout) {
+            // Needs to pass a saved workout in progress to work or saved instance
+            //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            //ft.replace(R.id.flMain, new ResumeWorkoutFragment());
+            //ft.commit();
         } else if (id == R.id.nav_create_workout) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new CreateWorkoutFragment());
@@ -100,5 +106,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    String username = "";
+    public void sendUsername(String a){
+        username = this.getIntent().getStringExtra("Username");
+        HomeFragment.sendSetUsername(a);
     }
 }

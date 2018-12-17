@@ -45,6 +45,7 @@ public class Workout implements Parcelable {
     }
 
     //setters
+    public void setName(String name) {this.name = name;}
     public void setDate() {
         this.date = getTodaysDate();
     }
