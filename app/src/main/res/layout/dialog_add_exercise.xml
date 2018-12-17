@@ -20,7 +20,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="# of Sets" />
+        android:hint="# of Sets"
+        android:inputType = "phone" />
     <EditText
         android:id="@+id/ex_reps"
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="# of Reps" />
+        android:hint="# of Reps"
+        android:inputType = "phone" />
     <EditText
         android:id="@+id/ex_weight"
         android:layout_width="match_parent"
