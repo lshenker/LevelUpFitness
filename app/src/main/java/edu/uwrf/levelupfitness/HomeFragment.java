@@ -40,7 +40,9 @@ public class HomeFragment extends Fragment {
     public static void sendSetUsername(String a){
         username = a;
     }
-
+//    Workout WO1 = null;
+//    Workout WO2 = null;
+//    Workout WO3 = null;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,6 +66,26 @@ public class HomeFragment extends Fragment {
             workoutList.add(model);
             saveWorkout(model);
         }
+
+
+      //      if (WO1 == null) {
+    //            WO1 = model;
+//
+  //          }
+     //       else if (WO2 == null && WO1 != null) {
+
+           //     WO2 = model;
+
+       //     }
+         //  else if (WO3 == null && WO2 != null && WO1 != null) {
+     //           WO3 = model;
+
+   //         }
+
+//            else if (WO3 != null && WO2 != null && WO1 != null) {
+//                WO3 = model;
+// }
+
 
         workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -120,9 +142,24 @@ public class HomeFragment extends Fragment {
         Workout workoutB = new Workout("Workout B", exList);
         workoutList.add(workoutB);
 
+
+
         // TODO: Load workout ArrayList from SQL/txt file
-       // String json = Read_column_value_logic_here
-       // JSONObject jsonObject = new JSONObject(json);
+        // String json = Read_column_value_logic_here
+        // JSONObject jsonObject = new JSONObject(json);
+
+        //if(WO1 != null){
+            //workoutList.add(WO1);
+        //}
+        //if(WO2 != null){
+
+            //workoutList.add(WO2);
+        //}
+        //if(WO3 != null){
+            //workoutList.add(WO3);
+        //}
+
+
     }
 
     void saveWorkout(Workout model) {
@@ -143,6 +180,26 @@ public class HomeFragment extends Fragment {
         catch(IOException e){
             e.printStackTrace();
         }
+      
+
+        //if(WO1 == null){
+            //WO1 = model;
+         //   workoutList.add(WO1);
+        //}
+        //if(WO2 == null && WO1 != null){
+
+            //WO2 = model;
+        //    workoutList.add(WO2);
+        //}
+        //if(WO3 == null && WO2 != null && WO1 != null){
+            //WO3 = model;
+          //  workoutList.add(WO3);
+           //     }
+
+       //if(WO3 != null && WO2 != null && WO1 != null){
+           //WO3 = model;
+          //  workoutList.add(WO3);
+        //}
 
 
 
