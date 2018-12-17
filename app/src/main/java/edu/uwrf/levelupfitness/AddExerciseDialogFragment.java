@@ -12,7 +12,8 @@ import android.widget.EditText;
 
 import edu.uwrf.workoutapp.R;
 
-public class AddExerciseDialogFragment extends DialogFragment {
+public class AddExerciseDialogFragment extends DialogFragment
+{
 
     // Interface definition
     public interface AddExerciseDialogListener {
@@ -35,11 +36,69 @@ public class AddExerciseDialogFragment extends DialogFragment {
         // get the view
         View view = inflater.inflate(R.layout.dialog_add_exercise, null);
 
-        // get the text fields
+
+        //get text fields for validation
         final EditText name = (EditText) view.findViewById(R.id.ex_name);
         final EditText sets = (EditText) view.findViewById(R.id.ex_sets);
         final EditText reps = (EditText) view.findViewById(R.id.ex_reps);
         final EditText weight = (EditText) view.findViewById(R.id.ex_weight);
+
+
+
+        /*
+
+        boolean done = false;
+
+        while(!done){
+            try {
+                String workoutValidator = name.getText().toString();
+                done = true;
+            }
+            catch(NullPointerException e){
+                System.out.print("type in a string");
+            }
+
+        }
+
+        done = false;
+
+        while(!done){
+            try {
+                int setValidator = Integer.parseInt(sets.getText().toString());
+                done = true;
+            }
+            catch(NullPointerException e){
+                System.out.print("type in a int");
+            }
+
+        }
+
+        //done = false;
+
+        while(!done){
+            try {
+                int repValidator = Integer.parseInt(reps.getText().toString());
+                done = true;
+            }
+            catch(NullPointerException e){
+                System.out.print("type in a int");
+            }
+
+        }
+
+        done = false;
+
+        while(!done){
+            try {
+                double weightValidator = Double.parseDouble(weight.getText().toString());
+                done = true;
+            }
+            catch(NullPointerException e){
+                System.out.print("type in a double");
+            }
+
+        }
+        */
 
         // set the view
         builder.setView(view)
@@ -80,5 +139,5 @@ public class AddExerciseDialogFragment extends DialogFragment {
             throw new ClassCastException("Must implement DialogListener");
         }
     }
-    
+
 } // end of class AddExerciseDialogFragment

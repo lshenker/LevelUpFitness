@@ -38,5 +38,6 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="Weight (lbs)" />
+        android:hint="Weight (lbs)"
+        android:inputType = "phone"/>
 </LinearLayout>
